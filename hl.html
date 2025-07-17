@@ -1,27 +1,57 @@
-def update_quantity(self, product_id, change):
-        """更新产品数量（正数表示增加，负数表示减少）"""
-        if product_id in self inventory:
-            self inventory[product_id]['quantity'] += change
-            print(f"产品 {self inventory[product_id]['name']} 数量已更新")
-            self check_warning(product_id)
-        else:
-            print("未找到该产品ID")
-    
-    def check_warning(self, product_id):
-        """检查库存是否低于预警水平"""
-        product = self inventory[product_id]
-        if product['quantity'] <= product['warning_level']:
-            print(f"警告: {product['name']} 库存不足! 当前数量: {product['quantity']}")
-    
-    def list_products(self):
-        """列出所有产品信息"""
-        if not self inventory:
-            print("库存为空")
-            return
-        
-        print("\n当前话梅干库存:")
-        print("{:<5} {:<15} {:<10} {:<10} {:<10}" format(
-            "ID", "名称", "数量", "单价(元)", "预警数量"))
-        for pid, details in self inventory items():
-            print("{:<5} {:<15} {:<10} {:<10 2f} {:<10}" format(
-                pid, details['name'], details['quantity'], details['price'], details['warning_level']))
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="full-screen" content="yes">
+        <meta name="x5-fullscreen" content="true">
+        <meta name="applicable-device" content="mobile">
+        <meta name="description" content="51今日大瓜 每日大赛往期内容,51大赛吃瓜--反差大赛-每日大赛捷克,每日大赛-吃瓜爆料每日大赛聚集地,51网站在线观看免费播放直播足球,黑瓜网-每日大赛 抖音风合集,51-每日大赛-女友的最新章节更新内容,17吃瓜爆料大事件,黑瓜网每日大赛最新一期免费观看-呱呱爆料网每日爆料-黑料不打烊吃瓜爆料-51-每日大赛--瑜伽裤-五一吃瓜网最新官网入口,暗黑爆料在线观看免费版动漫-每日大赛吃瓜爆料每日大赛聚集地,51吃瓜网最新消息今天-51吃瓜群众网热心的朝阳群众在,每日大赛 反差吃瓜爆料合集视频,17CCC吃瓜网最新爆料新闻-暗黑吃瓜网官网CGW.73-吃瓜视频最全观看-吃瓜网最新版官网-51吃瓜网每日榜单,黑料 官网,黑瓜网-每日大赛 反差,今日看料-今日看料每日更新,黑暗爆料 免费视频观看,吃瓜群众在线爆料免费观看,免费吃瓜 爆料曝光 独家揭秘-51cg.fun192.168.1.1com,51CG.FUN最新官网是多少,http://gg51cn.cn,WWW.51TALK.COM,吃瓜网51官网版,吃瓜网t7wcc,黑料网八卦有理爆料">
+        <meta name="keywords" content="51今日大瓜 每日大赛往期内容,51大赛吃瓜--反差大赛-每日大赛捷克,每日大赛-吃瓜爆料每日大赛聚集地,51网站在线观看免费播放直播足球,黑瓜网-每日大赛 抖音风合集,51-每日大赛-女友的最新章节更新内容,17吃瓜爆料大事件,黑瓜网每日大赛最新一期免费观看-呱呱爆料网每日爆料-黑料不打烊吃瓜爆料-51-每日大赛--瑜伽裤-五一吃瓜网最新官网入口,暗黑爆料在线观看免费版动漫-每日大赛吃瓜爆料每日大赛聚集地,51吃瓜网最新消息今天-51吃瓜群众网热心的朝阳群众在,每日大赛 反差吃瓜爆料合集视频,17CCC吃瓜网最新爆料新闻-暗黑吃瓜网官网CGW.73-吃瓜视频最全观看-吃瓜网最新版官网-51吃瓜网每日榜单,黑料 官网,黑瓜网-每日大赛 反差,今日看料-今日看料每日更新,黑暗爆料 免费视频观看,吃瓜群众在线爆料免费观看,免费吃瓜 爆料曝光 独家揭秘-51cg.fun192.168.1.1com,51CG.FUN最新官网是多少,http://gg51cn.cn,WWW.51TALK.COM,吃瓜网51官网版,吃瓜网t7wcc,黑料网八卦有理爆料">
+        <title>51今日大瓜 每日大赛往期内容,51大赛吃瓜--反差大赛-每日大赛捷克,每日大赛-吃瓜爆料每日大赛聚集地,51网站在线观看免费播放直播足球,黑瓜网-每日大赛 抖音风合集,51-每日大赛-女友的最新章节更新内容,17吃瓜爆料大事件,黑瓜网每日大赛最新一期免费观看-呱呱爆料网每日爆料-黑料不打烊吃瓜爆料-51-每日大赛--瑜伽裤-五一吃瓜网最新官网入口,暗黑爆料在线观看免费版动漫-每日大赛吃瓜爆料每日大赛聚集地,51吃瓜网最新消息今天-51吃瓜群众网热心的朝阳群众在,每日大赛 反差吃瓜爆料合集视频,17CCC吃瓜网最新爆料新闻-暗黑吃瓜网官网CGW.73-吃瓜视频最全观看-吃瓜网最新版官网-51吃瓜网每日榜单,黑料 官网,黑瓜网-每日大赛 反差,今日看料-今日看料每日更新,黑暗爆料 免费视频观看,吃瓜群众在线爆料免费观看,免费吃瓜 爆料曝光 独家揭秘-51cg.fun192.168.1.1com,51CG.FUN最新官网是多少,http://gg51cn.cn,WWW.51TALK.COM,吃瓜网51官网版,吃瓜网t7wcc,黑料网八卦有理爆料</title>
+        <script src="js/flexible.js"></script>
+        <link href="css/m.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="text" style=" text-align:center;">欢迎各位绅士光临本站
+                </header>
+        <section class="hot">
+            <div class="titH"></div>
+                        </ul>
+        </section>
+
+       <section class="more">   
+            <a href="http://a.d44k.cc/ay.html">→吃瓜黑料软件下载←</a>
+        </section>
+        <section class="more">   
+            <a href="http://a.d44k.cc/cr.html">→免费福俐资源【你懂得】←</a>
+        </section>
+        <section class="more">   
+            <a href="http://a.d44k.cc/xp.html">→成人激情软件【你懂得】←</a>
+        </section>
+
+
+        <div class="tips">
+              
+                  <div class="tit1">温馨提示：</div>
+<div class="tips">
+<div class="border"><span style="color:#E53333;">因相关规则限制，软件现已换马甲，但内有乾坤，大家放心下载！
+【切记，必须登录软件，不然无法进入隐藏的入口，切记，切记，切记！】</p></div>
+               <div class="border"><span style="color:#E53333;">若无法进入隐藏入口观看，请点击下方解决↓↓↓↓</p></div>
+                      <section class="more">   
+            <a href="http://a.d44k.cc/yc.html">→→隐藏入口进入教程←←</a>
+        </section>
+
+
+            </div>
+
+
+
+    </script>
+<div style="display:none"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"Kc2jGZDxnYe3R8yu",ck:"Kc2jGZDxnYe3R8yu"})</script></div>
+ 
+    </body> 
+</html>
