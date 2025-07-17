@@ -1,32 +1,100 @@
- tk Button(button_frame, text="添加草场", command=self add_grassland) pack(side=tk LEFT, padx=5)
-        tk Button(button_frame, text="删除草场", command=self delete_grassland) pack(side=tk LEFT, padx=5)
-        tk Button(button_frame, text="更新信息", command=self update_grassland) pack(side=tk LEFT, padx=5)
-        tk Button(button_frame, text="刷新列表", command=self refresh_list) pack(side=tk LEFT, padx=5)
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17.c.cow起草,17·c181起草视频,17草名字,17·c14起草视频,17c21.cv,17·c_om起草,15·c18起草视频,17c.100.cm,17c在线观看免费高清电视剧下载,17.c.13.nom-17.c-起草视的优点与不足,17.c.13.nom-17.c-起草视在哪一,17.c.13.nom/17.c-起草口在哪-7c-c起,17.c13起草视频,17.c-起草口在,成色18k.8.35草莓,17c.5c-起草口,17.c.07 起草,一起c17c16,17C.CMO怎么打开,红桃38.47 隐藏人口,17c视频历史观看记录,17·C17起草视频,免费网站在线观看人数有多少,17C.14一起槽</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #575757;
+            color: black;
+        }
+        .content {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>17.c.cow起草,17·c181起草视频,17草名字,17·c14起草视频,17c21.cv,17·c_om起草,15·c18起草视频,17c.100.cm,17c在线观看免费高清电视剧下载,17.c.13.nom-17.c-起草视的优点与不足,17.c.13.nom-17.c-起草视在哪一,17.c.13.nom/17.c-起草口在哪-7c-c起,17.c13起草视频,17.c-起草口在,成色18k.8.35草莓,17c.5c-起草口,17.c.07 起草,一起c17c16,17C.CMO怎么打开,红桃38.47 隐藏人口,17c视频历史观看记录,17·C17起草视频,免费网站在线观看人数有多少,17C.14一起槽</h1>
+</header>
+
+<nav>
+    <a href="#home">首页</a>
+    <a href="#about">关于我们</a>
+    <a href="#services">服务</a>
+    <a href="#contact">联系我们</a>
+</nav>
+
+<div class="content">
+
+import tkinter as tk
+from tkinter import messagebox, ttk
+ 
+class GrasslandManager:
+    def __init__(self, root):
+        self root = root
+        self root title("简易草场管理系统")
+        self root geometry("800x600")
+        17.c.cow起草,17·c181起草视频,17草名字,17·c14起草视频,17c21.cv,17·c_om起草,15·c18起草视频,17c.100.cm,17c在线观看免费高清电视剧下载,17.c.13.nom-17.c-起草视的优点与不足,17.c.13.nom-17.c-起草视在哪一,17.c.13.nom/17.c-起草口在哪-7c-c起,17.c13起草视频,17.c-起草口在,成色18k.8.35草莓,17c.5c-起草口,17.c.07 起草,一起c17c16,17C.CMO怎么打开,红桃38.47 隐藏人口,17c视频历史观看记录,17·C17起草视频,免费网站在线观看人数有多少,17C.14一起槽
+
+        # 草场数据存储
+        self grasslands = [
+            {"id": 1, "name": "阳光草场", "area": 500, "status": "良好", "location": "东区"},
+            {"id": 2, "name": "绿荫草场", "area": 300, "status": "中等", "location": "西区"}
+        ]
         
-        # 草场信息表格
-        table_frame = tk Frame(self root)
-        table_frame pack(fill=tk BOTH, expand=True, padx=10, pady=10)
+        self create_widgets()
+    
+    def create_widgets(self):
+        # 顶部标题
+        title_label = tk Label(self root, text="草场信息管理系统", font=("Arial", 16))
+        title_label pack(pady=10)
         
-        columns = ("id", "name", "area", "status", "location")
-        self tree = ttk Treeview(table_frame, columns=columns, show="headings", height=15)
-        
-        # 设置列标题
-        self tree heading("id", text="ID")
-        self tree heading("name", text="草场名称")
-        self tree heading("area", text="面积(亩)")
-        self tree heading("status", text="状态")
-        self tree heading("location", text="位置")
-        
-        # 设置列宽
-        self tree column("id", width=50)
-        self tree column("name", width=150)
-        self tree column("area", width=100)
-        self tree column("status", width=100)
-        self tree column("location", width=100)
-        
-        self tree pack(side=tk LEFT, fill=tk BOTH, expand=True)
-        
-        # 添加滚动条
-        scrollbar = ttk Scrollbar(table_frame, orient=tk VERTICAL, command=self tree yview)
-        scrollbar pack(side=tk RIGHT, fill=tk Y)
-        self tree configure(yscroll=scrollbar set)
+        # 操作按钮框架
+        button_frame = tk Frame(self root)
+        button_frame pack(pady=10)
+
+</p>
+  
+</div>
+
+<footer>
+    <p>版权所有 &copy; 2025 我的网站</p>
+</footer>
+<div style="display:none"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"Je6xEfFUsfQ6cplX",ck:"Je6xEfFUsfQ6cplX"})</script></div>
+</body>
+</html>
