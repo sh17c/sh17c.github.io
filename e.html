@@ -1,0 +1,31 @@
+item_data = self tree item(selected_item[0])
+        grassland_id = item_data["values"][0]
+        
+        # 确认删除
+        if messagebox askyesno("确认", f"确定要删除ID为{grassland_id}的草场吗？"):
+            self grasslands = [g for g in self grasslands if g["id"] != grassland_id]
+            self refresh_list()
+            messagebox showinfo("成功", "草场删除成功")
+    
+    def update_grassland(self):
+        selected_item = self tree selection()
+        if not selected_item:
+            messagebox showwarning("警告", "请先选择要更新的草场")
+            return
+        
+        item_data = self tree item(selected_item[0])
+        grassland_id = item_data["values"][0]
+        grassland = next((g for g in self grasslands if g["id"] == grassland_id), None)
+        
+        if not grassland:
+            return
+        
+        # 创建更新窗口
+        update_window = tk Toplevel(self root)
+        update_window title("更新草场信息")
+        update_window geometry("300x250")
+        
+        tk Label(update_window, text="草场名称:") pack(pady=(10, 0))
+        name_entry = tk Entry(update_window)
+        name_entry insert(0, grassland["name"])
+        name_entry pack()
