@@ -1,0 +1,33 @@
+def save_grassland():
+            try:
+                new_id = max([g["id"] for g in self grasslands]) + 1 if self grasslands else 1
+                name = name_entry get() strip()
+                area = float(area_entry get())
+                status = status_var get()
+                location = location_entry get() strip()
+                
+                if not name or not location:
+                    messagebox showerror("错误", "名称和位置不能为空")
+                    return
+                
+                self grasslands append({
+                    "id": new_id,
+                    "name": name,
+                    "area": area,
+                    "status": status,
+                    "location": location
+                })
+                
+                messagebox showinfo("成功", "草场添加成功")
+                self refresh_list()
+                add_window destroy()
+            except ValueError:
+                messagebox showerror("错误", "面积必须为数字")
+        
+        tk Button(add_window, text="保存", command=save_grassland) pack(pady=10)
+    
+    def delete_grassland(self):
+        selected_item = self tree selection()
+        if not selected_item:
+            messagebox showwarning("警告", "请先选择要删除的草场")
+            return
