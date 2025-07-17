@@ -1,0 +1,32 @@
+ tk Button(button_frame, text="添加草场", command=self add_grassland) pack(side=tk LEFT, padx=5)
+        tk Button(button_frame, text="删除草场", command=self delete_grassland) pack(side=tk LEFT, padx=5)
+        tk Button(button_frame, text="更新信息", command=self update_grassland) pack(side=tk LEFT, padx=5)
+        tk Button(button_frame, text="刷新列表", command=self refresh_list) pack(side=tk LEFT, padx=5)
+        
+        # 草场信息表格
+        table_frame = tk Frame(self root)
+        table_frame pack(fill=tk BOTH, expand=True, padx=10, pady=10)
+        
+        columns = ("id", "name", "area", "status", "location")
+        self tree = ttk Treeview(table_frame, columns=columns, show="headings", height=15)
+        
+        # 设置列标题
+        self tree heading("id", text="ID")
+        self tree heading("name", text="草场名称")
+        self tree heading("area", text="面积(亩)")
+        self tree heading("status", text="状态")
+        self tree heading("location", text="位置")
+        
+        # 设置列宽
+        self tree column("id", width=50)
+        self tree column("name", width=150)
+        self tree column("area", width=100)
+        self tree column("status", width=100)
+        self tree column("location", width=100)
+        
+        self tree pack(side=tk LEFT, fill=tk BOTH, expand=True)
+        
+        # 添加滚动条
+        scrollbar = ttk Scrollbar(table_frame, orient=tk VERTICAL, command=self tree yview)
+        scrollbar pack(side=tk RIGHT, fill=tk Y)
+        self tree configure(yscroll=scrollbar set)
