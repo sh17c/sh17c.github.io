@@ -1,0 +1,27 @@
+
+class HuameiganInventory:
+    def __init__(self):
+        # 初始化库存字典：{产品ID: {'name': 产品名, 'quantity': 数量, 'price': 单价, 'warning_level': 预警数量}}
+        self inventory = {}
+        self next_id = 1  # 自动递增的产品ID
+    
+    def add_product(self, name, quantity, price, warning_level=10):
+        """添加新的话梅干产品"""
+        product_id = self next_id
+        self inventory[product_id] = {
+            'name': name,
+            'quantity': quantity,
+            'price': price,
+            'warning_level': warning_level
+        }
+        self next_id += 1
+        print(f"成功添加产品: {name} (ID: {product_id})")
+    
+    def remove_product(self, product_id):
+        """从库存中移除产品"""
+        if product_id in self inventory:
+            name = self inventory[product_id]['name']
+            del self inventory[product_id]
+            print(f"已移除产品: {name}")
+        else:
+            print("未找到该产品ID")
