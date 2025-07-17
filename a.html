@@ -1,0 +1,26 @@
+
+import tkinter as tk
+from tkinter import messagebox, ttk
+ 
+class GrasslandManager:
+    def __init__(self, root):
+        self root = root
+        self root title("简易草场管理系统")
+        self root geometry("800x600")
+        
+        # 草场数据存储
+        self grasslands = [
+            {"id": 1, "name": "阳光草场", "area": 500, "status": "良好", "location": "东区"},
+            {"id": 2, "name": "绿荫草场", "area": 300, "status": "中等", "location": "西区"}
+        ]
+        
+        self create_widgets()
+    
+    def create_widgets(self):
+        # 顶部标题
+        title_label = tk Label(self root, text="草场信息管理系统", font=("Arial", 16))
+        title_label pack(pady=10)
+        
+        # 操作按钮框架
+        button_frame = tk Frame(self root)
+        button_frame pack(pady=10)
