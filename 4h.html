@@ -1,0 +1,36 @@
+def search_product(self, name):
+        """按名称搜索产品"""
+        found = False
+        for pid, details in self inventory items():
+            if name lower() in details['name'] lower():
+                print(f"\n找到产品: {details['name']} (ID: {pid})")
+                print(f"数量: {details['quantity']}, 单价: {details['price']}元")
+                found = True
+        if not found:
+            print("未找到匹配的产品")
+ 
+ 
+# 示例使用
+if __name__ == "__main__":
+    manager = HuameiganInventory()
+    
+    # 添加一些初始产品
+    manager add_product("原味话梅干", 50, 12 5)
+    manager add_product("陈皮话梅干", 30, 15 0)
+    manager add_product("甘草话梅干", 40, 13 8)
+    
+    # 显示库存
+    manager list_products()
+    
+    # 更新库存数量
+    manager update_quantity(1, -5)  # 卖出5个原味话梅干
+    manager update_quantity(2, 10)  # 进货10个陈皮话梅干
+    
+    # 搜索产品
+    manager search_product("陈皮")
+    
+    # 移除产品
+    # manager remove_product(3)  # 取消注释可以测试移除功能
+    
+    # 再次显示库存
+    manager list_products()
