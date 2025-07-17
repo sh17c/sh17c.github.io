@@ -1,0 +1,39 @@
+ tk Label(update_window, text="面积(亩):") pack(pady=(10, 0))
+        area_entry = tk Entry(update_window)
+        area_entry insert(0, grassland["area"])
+        area_entry pack()
+        
+        tk Label(update_window, text="状态:") pack(pady=(10, 0))
+        status_var = tk StringVar(value=grassland["status"])
+        status_menu = ttk Combobox(update_window, textvariable=status_var, 
+                                 values=["良好", "中等", "较差"], state="readonly")
+        status_menu pack()
+        
+        tk Label(update_window, text="位置:") pack(pady=(10, 0))
+        location_entry = tk Entry(update_window)
+        location_entry insert(0, grassland["location"])
+        location_entry pack()
+        
+        def save_updates():
+            try:
+                grassland["name"] = name_entry get() strip()
+                grassland["area"] = float(area_entry get())
+                grassland["status"] = status_var get()
+                grassland["location"] = location_entry get() strip()
+                
+                if not grassland["name"] or not grassland["location"]:
+                    messagebox showerror("错误", "名称和位置不能为空")
+                    return
+                
+                messagebox showinfo("成功", "草场信息更新成功")
+                self refresh_list()
+                update_window destroy()
+            except ValueError:
+                messagebox showerror("错误", "面积必须为数字")
+        
+        tk Button(update_window, text="保存更新", command=save_updates) pack(pady=10)
+ 
+if __name__ == "__main__":
+    root = tk Tk()
+    app = GrasslandManager(root)
+    root mainloop()
