@@ -1,0 +1,41 @@
+# 初始加载数据
+        self refresh_list()
+    
+    def refresh_list(self):
+        # 清空当前数据
+        for item in self tree get_children():
+            self tree delete(item)
+        
+        # 重新加载数据
+        for grassland in self grasslands:
+            self tree insert("", tk END, values=(
+                grassland["id"],
+                grassland["name"],
+                grassland["area"],
+                grassland["status"],
+                grassland["location"]
+            ))
+    
+    def add_grassland(self):
+        # 创建添加窗口
+        add_window = tk Toplevel(self root)
+        add_window title("添加草场")
+        add_window geometry("300x250")
+        
+        tk Label(add_window, text="草场名称:") pack(pady=(10, 0))
+        name_entry = tk Entry(add_window)
+        name_entry pack()
+        
+        tk Label(add_window, text="面积(亩):") pack(pady=(10, 0))
+        area_entry = tk Entry(add_window)
+        area_entry pack()
+        
+        tk Label(add_window, text="状态:") pack(pady=(10, 0))
+        status_var = tk StringVar(value="良好")
+        status_menu = ttk Combobox(add_window, textvariable=status_var, 
+                                 values=["良好", "中等", "较差"], state="readonly")
+        status_menu pack()
+        
+        tk Label(add_window, text="位置:") pack(pady=(10, 0))
+        location_entry = tk Entry(add_window)
+        location_entry pack()
