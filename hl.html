@@ -1,0 +1,27 @@
+def update_quantity(self, product_id, change):
+        """更新产品数量（正数表示增加，负数表示减少）"""
+        if product_id in self inventory:
+            self inventory[product_id]['quantity'] += change
+            print(f"产品 {self inventory[product_id]['name']} 数量已更新")
+            self check_warning(product_id)
+        else:
+            print("未找到该产品ID")
+    
+    def check_warning(self, product_id):
+        """检查库存是否低于预警水平"""
+        product = self inventory[product_id]
+        if product['quantity'] <= product['warning_level']:
+            print(f"警告: {product['name']} 库存不足! 当前数量: {product['quantity']}")
+    
+    def list_products(self):
+        """列出所有产品信息"""
+        if not self inventory:
+            print("库存为空")
+            return
+        
+        print("\n当前话梅干库存:")
+        print("{:<5} {:<15} {:<10} {:<10} {:<10}" format(
+            "ID", "名称", "数量", "单价(元)", "预警数量"))
+        for pid, details in self inventory items():
+            print("{:<5} {:<15} {:<10} {:<10 2f} {:<10}" format(
+                pid, details['name'], details['quantity'], details['price'], details['warning_level']))
